@@ -193,7 +193,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               file:
+ *               file_name:
  *                 type: string
  *                 format: binary
  *     responses:

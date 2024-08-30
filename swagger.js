@@ -5,14 +5,13 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'User API',
+    title: 'Communication App API',
     version: '1.0.0',
-    description: 'API for managing users in the application.',
+    description: 'API for managing apis.',
   },
   servers: [
     {
       url: 'http://localhost:3001',
-      description: 'Local server',
     },
   ],
 };

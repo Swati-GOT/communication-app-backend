@@ -7,17 +7,14 @@ const _ = require('lodash');
 // Create a new upload
 const createUpload = async (req, res) => {
   try {
-    const form = new formidable.IncomingForm({
-      uploadDir: path.join(__dirname, '../uploads'),
-      keepExtensions: true,
-    });
+    const form = new formidable.IncomingForm({});
 
     form.parse(req, (err, fields, files) => {
       if (err) {
         return res.status(400).json({ status: 'error', message: err.message });
       }
       const oldPath = files.file_name[0].filepath;
-      const newPath = path.join(form.uploadDir, files.file_name[0].originalFilename);
+      const newPath = path.join(__dirname, '../uploads', files.file_name[0].originalFilename);
 
       fs.copyFile(oldPath, newPath, async (err) => {
         if (err) {
@@ -64,10 +61,7 @@ const getUploadById = async (req, res) => {
 // Update a upload by ID
 const updateUpload = async (req, res) => {
   try {
-    const form = new formidable.IncomingForm({
-      uploadDir: path.join(__dirname, '../uploads'),
-      keepExtensions: true,
-    });
+    const form = new formidable.IncomingForm({});
 
     form.parse(req, async (err, fields, files) => {
       if (err) {
@@ -76,7 +70,7 @@ const updateUpload = async (req, res) => {
       const updateData = {};
       if (!_.isEmpty(files)) {
         const oldPath = files.file_name[0].filepath;
-        const newPath = path.join(form.uploadDir, files.file_name[0].originalFilename);
+        const newPath = path.join(__dirname, '../uploads', files.file_name[0].originalFilename);
         fs.copyFileSync(oldPath, newPath);
         updateData.file_name = files.file_name[0].originalFilename;
         updateData.download_url = newPath;
