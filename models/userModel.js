@@ -22,11 +22,6 @@ const User = sequelize.define('Users', {
     }
 });
 
-// Sync the model with the database
-// sequelize.sync({ alter: true })
-//   .then(() => {
-//     //console.log('Database & tables created!');
-//   })
-//   .catch(err => console.error('Error syncing database:', err));
+User.sync({ alter: true });
 
 module.exports = User;

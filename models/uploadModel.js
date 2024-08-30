@@ -20,11 +20,6 @@ const Upload = sequelize.define('Uploads', {
     }
 });
 
-// Sync the model with the database
-// sequelize.sync({ alter: true })
-//   .then(() => {
-//     //console.log('Database & tables created!');
-//   })
-//   .catch(err => console.error('Error syncing database:', err));
+Upload.sync({ alter: true });
 
 module.exports = Upload;

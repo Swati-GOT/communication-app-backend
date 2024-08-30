@@ -16,8 +16,7 @@ const Chat = sequelize.define('Chats', {
     },
     username: {
         type: DataTypes.STRING
-    }
-    ,
+    },
     userId: {
         type: DataTypes.INTEGER,
         references: {
@@ -31,11 +30,6 @@ const Chat = sequelize.define('Chats', {
 Chat.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
 User.hasMany(Chat, { foreignKey: 'userId' });
 
-// Sync the model with the database
-// sequelize.sync({ alter: true })
-//   .then(() => {
-//     //console.log('Database & tables created!');
-//   })
-//   .catch(err => console.error('Error syncing database:', err));
+Chat.sync({ alter: true });
 
 module.exports = Chat;
